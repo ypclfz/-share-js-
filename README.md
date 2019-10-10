@@ -43,6 +43,10 @@ var c = 'cccc';
 ```
 ### 2. 箭头函数
 ```
+var a = () => { console.log(this) }
+var b = function () {
+  console.log(this)
+}
 var obj = {
   prop: 1,
   func: function() {
@@ -58,24 +62,31 @@ var obj = {
     };
   },
 };
-var a = () => { this.c = 'ccc' }
 ```
 使用传统的为this命名的方法绑定this
 ```
 "use strict";
 
-var _this3 = void 0;
+var _this2 = void 0;
+
+var a = function a() {
+  console.log(_this2);
+};
+
+var b = function b() {
+  console.log(this);
+};
 
 var obj = {
   prop: 1,
   func: function func() {
-    var _this2 = this;
+    var _this3 = this;
 
     var _this = this;
 
     var innerFunc = function innerFunc() {
-      var _this_in = _this2;
-      _this2.prop = 1;
+      var _this_in = _this3;
+      _this3.prop = 1;
     };
 
     var innerFunc1 = function innerFunc1() {
@@ -84,7 +95,4 @@ var obj = {
   }
 };
 
-var a = function a() {
-  _this3.c = 'ccc';
-};
 ```
